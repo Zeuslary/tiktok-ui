@@ -1,0 +1,43 @@
+.menu-item {
+    --width-icon: 48px;
+    height: var(--menu-item-height);
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-item);
+    margin-top: var(--space-item);
+    border-radius: 6px;
+
+    &:hover {
+        background-color: var(--flash-white-color);
+    }
+
+    svg {
+        font-size: 1.9rem;
+        width: var(--width-icon);
+        position: relative;
+        bottom: 1px;
+        width: var(--width-icon);
+    }
+
+    img {
+        --edge: 22px;
+        width: var(--edge);
+        height: var(--edge);
+        margin: 0 14px;
+        border-radius: 50%;
+    }
+
+    span {
+        font-weight: 500;
+        margin-left: 6px;
+    }
+
+    &.active svg,
+    &.active span {
+        color: var(--primary-color);
+    }
+}
+
+.menu-icon {
+    font-size: 1.8rem;
+}

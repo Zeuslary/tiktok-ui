@@ -1,34 +1,45 @@
-import Home from '~/pages/Home';
-import Following from '~/pages/Following';
-import Profile from '~/pages/Profile';
-import Friend from '~/pages/Friend';
-import Upload from '~/pages/Upload';
+import menuPaths from '~/config/routersPath';
+
+import { Home, Explore, Following, Friends, Profile, Upload, Activity, Message } from '~/pages';
 import { UploadLayout } from '~/components/Layout';
 
 const publicRouter = [
     {
-        path: '/',
+        path: menuPaths.home,
         component: Home,
     },
     {
-        path: '/following',
+        path: menuPaths.explore,
+        component: Explore,
+    },
+    {
+        path: menuPaths.following,
         component: Following,
+    },
+    {
+        path: menuPaths.profile,
+        component: Profile,
+    },
+    {
+        path: menuPaths.upload,
+        component: Upload,
+        layout: UploadLayout,
     },
 ];
 
 const privateRouter = [
+    ...publicRouter,
     {
-        path: '/profile',
-        component: Profile,
+        path: menuPaths.friends,
+        component: Friends,
     },
     {
-        path: '/friend',
-        component: Friend,
+        path: menuPaths.activity,
+        component: Activity,
     },
     {
-        path: '/upload',
-        component: Upload,
-        layout: UploadLayout,
+        path: menuPaths.message,
+        component: Message,
     },
 ];
 
