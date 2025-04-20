@@ -3,9 +3,15 @@
 
 :root {
     --primary-color: #fe2c55;
+
+    // Default layout
+    --sidebar-width: 240px;
+    --video-width: 348px;
 }
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 

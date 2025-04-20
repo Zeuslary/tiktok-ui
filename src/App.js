@@ -5,7 +5,6 @@ import { DefaultLayout } from '~/components/Layout';
 function App() {
     return (
         <BrowserRouter>
-            <h1>App Tiktok</h1>
             <Routes>
                 {[...publicRouter, ...privateRouter].map((route, index) => {
                     const Page = route.component;
