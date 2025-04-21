@@ -36,6 +36,7 @@
     font-size: 1.4rem;
     width: 100%;
     margin-bottom: 4px;
+    margin-top: 2px;
 
     &:focus {
         border: 1px solid rgba(22, 24, 35, 0.2);
@@ -93,6 +94,7 @@
         width: 100%;
         background-color: transparent;
         cursor: pointer;
+        caret-color: transparent;
     }
 
     &.collapsed input {

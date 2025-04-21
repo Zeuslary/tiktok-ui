@@ -17,46 +17,74 @@ import { trendsData } from '~/config/trendConfig';
 
 function Sidebar() {
     const isCurrentPath = useLocation().pathname;
-    const [isCollapse, setIsCollapse] = useState(true);
+    const [showPopper, setShowPopper] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
 
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3]);
-        }, 2000);
-    }, []);
+        console.log('-------showPopper----------');
 
+        console.log('useEffect: showPopper', showPopper);
+        console.log('useEffect: searchResult', searchResult);
+    }, [showPopper, searchResult]);
+
+    const togglePopper = () => {
+        const willShow = !showPopper;
+        console.log('willShow', willShow);
+
+        if (willShow) {
+            handleShowPopper();
+        } else {
+            handleHidePopper();
+        }
+    };
+
+    const handleHidePopper = () => {
+        console.log('handleHidePopper');
+        setShowPopper(false);
+        setSearchResult([]);
+    };
+
+    const handleShowPopper = () => {
+        console.log('handleShowPopper');
+        setShowPopper(true);
+        setSearchResult([...trendsData]);
+    };
+
+    console.log('-------Start----------');
     return (
-        <header className={clsx(styles['wrapper'], isCollapse && styles['collapsed'])}>
+        <header className={clsx(styles['wrapper'], showPopper && styles['collapsed'])}>
             <aside className={styles['sidebar']}>
-                <img className={styles['logo']} src={isCollapse ? images.logoIcon : images.logo} alt="Tiktok" />
+                <img className={styles['logo']} src={showPopper ? images.logoIcon : images.logo} alt="Tiktok" />
 
                 {/* Start: Search suggestion */}
                 <Tippy
                     interactive
-                    visible={searchResult.length > 0}
+                    visible={showPopper}
+                    onClickOutside={handleHidePopper}
                     placement="right"
-                    render={(attrs) => (
-                        <WrapperPopper title="Search">
-                            <div tabIndex="-1" {...attrs}>
-                                <input className={styles['search-popper-input']} type="text" placeholder="Search" />
-                                <div className={styles['search-popper-result']}>
-                                    <p className={styles['search-popper-suggest']}>You may like</p>
-                                    <ul className={styles['search-popper-list']}>
-                                        {trendsData.map((trend) => (
-                                            <TrendItem key={trend.id} trend={trend} />
-                                        ))}
-                                    </ul>
+                    render={(attrs) =>
+                        showPopper && (
+                            <WrapperPopper title="Search">
+                                <div tabIndex="-1" {...attrs}>
+                                    <input className={styles['search-popper-input']} type="text" placeholder="Search" />
+                                    <div className={styles['search-popper-result']}>
+                                        <p className={styles['search-popper-suggest']}>You may like</p>
+                                        <ul className={styles['search-popper-list']}>
+                                            {searchResult.map((trend) => (
+                                                <TrendItem key={trend.id} trend={trend} />
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </WrapperPopper>
-                    )}
+                            </WrapperPopper>
+                        )
+                    }
                 >
-                    <div className={clsx(styles['search'], isCollapse && styles['collapsed'])}>
-                        <button className={styles['search-btn']}>
+                    <div className={clsx(styles['search'], showPopper && styles['collapsed'])}>
+                        <button className={styles['search-btn']} onClick={togglePopper}>
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
-                        <input type="text" placeholder="Search" disabled />
+                        <input type="text" placeholder="Search" onFocus={handleShowPopper} />
                     </div>
                 </Tippy>
                 {/* End: Search suggestion */}
@@ -70,7 +98,7 @@ function Sidebar() {
                                 key={item.orderIndex}
                                 menu={item}
                                 isCurrentPath={isCurrentPath === item.path}
-                                isCollapse={isCollapse}
+                                isCollapse={showPopper}
                             />
                         ))}
                 </ul>
