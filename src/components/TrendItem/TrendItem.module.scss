@@ -1,0 +1,33 @@
+.search-item {
+    height: var(--menu-item-height);
+    margin: var(--space-item) 12px var(--space-item) 0;
+    line-height: var(--menu-item-height);
+    padding: 0 12px;
+    font-size: 1.5rem;
+    color: rgb(22, 24, 35);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &:hover {
+        background-color: var(--flash-white-color);
+    }
+}
+
+.item-icon {
+    width: 20px;
+    margin: 0 14px 0 2px;
+    color: #b0afb4;
+    font-size: 0.7rem;
+
+    &.primary {
+        color: var(--primary-color);
+        font-size: 1.6rem;
+    }
+}

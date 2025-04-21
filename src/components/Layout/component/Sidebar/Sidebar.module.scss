@@ -1,19 +1,84 @@
 .wrapper {
-    --menu-item-height: 40px;
     --search-border-radius: 100px;
-    --space-item: 8px;
+    --sidebar-icon-height: 72px;
 
     width: var(--sidebar-width);
+
+    &.collapsed {
+        width: var(--sidebar-collapsed-width);
+    }
+
+    &.collapsed .search {
+        margin-top: 4px;
+    }
+
+    &.collapsed .logo {
+        margin-top: 4px;
+    }
 }
 
 .sidebar {
     padding: 12px 16px 0;
+    position: relative;
 }
 
 .logo {
     padding-left: 8px;
 }
 
+// ==== SEARCH POPPER  ====
+.search-popper-input {
+    padding-left: 16px;
+    height: var(--menu-item-height);
+    background-color: var(--flash-white-color);
+    border-radius: var(--search-border-radius);
+    caret-color: var(--primary-color);
+    font-size: 1.4rem;
+    width: 100%;
+    margin-bottom: 4px;
+
+    &:focus {
+        border: 1px solid rgba(22, 24, 35, 0.2);
+    }
+}
+
+.search-popper-suggest {
+    color: rgba(22, 24, 35, 0.75);
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 6px 14px;
+}
+
+.search-popper-list {
+    list-style: none;
+}
+
+.search-popper-result {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    height: calc(100vh - var(--menu-item-height) * 3 - 20px);
+    margin-top: 12px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--flash-white-color);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #ddd;
+    }
+}
+
+// ==== SEARCH OF MENU (OUTSIDE TIPPY) ====
 .search {
     height: var(--menu-item-height);
     background-color: var(--flash-white-color);
@@ -27,20 +92,22 @@
         height: 100%;
         width: 100%;
         background-color: transparent;
-        caret-color: var(--primary-color);
-        font-size: 1.6rem;
         cursor: pointer;
+    }
+
+    &.collapsed input {
+        display: none;
     }
 }
 
 .search-btn {
     height: 100%;
     width: 54px;
-    padding-left: 4px;
     cursor: pointer;
     font-size: 1.8rem;
-    border-top-left-radius: var(--search-border-radius);
-    border-bottom-left-radius: var(--search-border-radius);
+    border-radius: var(--search-border-radius);
+    position: relative;
+    right: 2px;
 
     svg {
         position: relative;
@@ -48,6 +115,7 @@
     }
 }
 
+// ==== MENU ====
 .menu-list {
     list-style: none;
 
@@ -58,12 +126,12 @@
 
 .menu-item {
     --width-icon: 48px;
-    height: var(--menu-item-height);
     display: flex;
     align-items: center;
-    margin-bottom: var(--space-item);
-    margin-top: var(--space-item);
     border-radius: 6px;
+    height: var(--menu-item-height);
+    line-height: var(--menu-item-height);
+    margin: var(--space-item) 0;
 
     &:hover {
         background-color: var(--flash-white-color);

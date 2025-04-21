@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
 import styles from './MenuItem.module.scss';
 
-function MenuItem({ menu, isCurrentPath }) {
+function MenuItem({ menu, isCurrentPath, isCollapse }) {
     let Icon = FontAwesomeIcon;
     let obj = {};
     if (menu.icon) {
@@ -20,9 +20,19 @@ function MenuItem({ menu, isCurrentPath }) {
         };
     }
 
+    console.log('Is collapse', isCollapse);
+
     return (
         <li>
-            <Link className={clsx(styles['menu-item'], isCurrentPath && styles['active'])} to={menu.path}>
+            <Link
+                className={clsx(
+                    styles['menu-item'],
+                    isCurrentPath && styles['active'],
+                    isCollapse && styles['collapsed'],
+                    (menu.orderIndex === 1 || menu.orderIndex === 2) && styles['deflect-left'],
+                )}
+                to={menu.path}
+            >
                 <Icon {...obj} />
                 <span>{menu.title}</span>
             </Link>

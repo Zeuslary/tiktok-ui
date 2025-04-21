@@ -1,0 +1,13 @@
+.wrapper {
+    width: var(--popper-width);
+    border-left: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    background-color: var(--white-color);
+    height: calc(100vh - 2px);
+    padding: 8px;
+}
+
+.title {
+    font-size: 2.3rem;
+    margin: 10px 12px 12px;
+}
