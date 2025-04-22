@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 
@@ -20,16 +20,16 @@ function Sidebar() {
     const [showPopper, setShowPopper] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
 
-    useEffect(() => {
-        console.log('-------showPopper----------');
+    // useEffect(() => {
+    //     // console.log('-------showPopper----------');
 
-        console.log('useEffect: showPopper', showPopper);
-        console.log('useEffect: searchResult', searchResult);
-    }, [showPopper, searchResult]);
+    //     // console.log('useEffect: showPopper', showPopper);
+    //     // console.log('useEffect: searchResult', searchResult);
+    // }, [showPopper, searchResult]);
 
     const togglePopper = () => {
         const willShow = !showPopper;
-        console.log('willShow', willShow);
+        // console.log('willShow', willShow);
 
         if (willShow) {
             handleShowPopper();
@@ -38,17 +38,17 @@ function Sidebar() {
         }
     };
 
-    const handleHidePopper = () => {
-        console.log('handleHidePopper');
+    const handleHidePopper = useCallback(() => {
+        // console.log('handleHidePopper');
         setShowPopper(false);
         setSearchResult([]);
-    };
+    }, []);
 
-    const handleShowPopper = () => {
-        console.log('handleShowPopper');
+    const handleShowPopper = useCallback(() => {
+        // console.log('handleShowPopper');
         setShowPopper(true);
         setSearchResult([...trendsData]);
-    };
+    }, []);
 
     console.log('-------Start----------');
     return (
@@ -61,10 +61,11 @@ function Sidebar() {
                     interactive
                     visible={showPopper}
                     onClickOutside={handleHidePopper}
+                    appendTo={'parent'}
                     placement="right"
                     render={(attrs) =>
                         showPopper && (
-                            <WrapperPopper title="Search">
+                            <WrapperPopper title="Search" onCloseHandle={handleHidePopper}>
                                 <div tabIndex="-1" {...attrs}>
                                     <input className={styles['search-popper-input']} type="text" placeholder="Search" />
                                     <div className={styles['search-popper-result']}>

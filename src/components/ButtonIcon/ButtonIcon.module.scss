@@ -1,0 +1,77 @@
+.wrapper {
+    --edge: 40px;
+    max-width: var(--edge);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.btnIcon {
+    width: var(--edge);
+    height: var(--edge);
+    cursor: pointer;
+
+    font-size: 1.8rem;
+    border-radius: 50%;
+    text-align: center;
+    line-height: var(--edge);
+
+    color: #202020;
+    background-color: var(--white-color);
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.canHover {
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+// Size button icon
+.supperSmall {
+    --edge: 28px;
+    font-size: 1.4rem;
+}
+
+.small {
+    --edge: 32px;
+    font-size: 1.4rem;
+}
+
+.large {
+    --edge: 48px;
+    font-size: 2.2rem;
+}
+
+// Style button icon
+.grayColor {
+    background-color: rgba(0, 0, 0, 0.05);
+
+    &.canHover:hover {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
+}
+
+// Disable button icon
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.icon {
+}
+
+.description {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(80 81 90);
+    margin-top: 6px;
+}

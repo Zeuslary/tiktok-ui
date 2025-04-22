@@ -1,10 +1,18 @@
 .wrapper {
+    position: relative;
     width: var(--popper-width);
+    height: calc(100vh - 2px);
+    padding: 8px;
+
     border-left: 1px solid rgba(0, 0, 0, 0.12);
     border-right: 1px solid rgba(0, 0, 0, 0.12);
     background-color: var(--white-color);
-    height: calc(100vh - 2px);
-    padding: 8px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
 }
 
 .title {
