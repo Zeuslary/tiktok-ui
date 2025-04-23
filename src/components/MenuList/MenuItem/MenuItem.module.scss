@@ -1,0 +1,51 @@
+.menu-item {
+    --width-icon: 40px;
+
+    position: relative;
+    width: 100%;
+    height: var(--menu-item-height);
+
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    margin-top: var(--space-item);
+    margin-bottom: var(--space-item);
+
+    &:hover {
+        background-color: var(--flash-white-color);
+    }
+}
+
+// Style for MenuItem
+.active {
+    color: var(--primary-color);
+}
+
+.menu-icon {
+    --edge: 20px;
+    width: var(--width-icon);
+    margin-right: 6px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img,
+    svg {
+        font-size: var(--edge);
+        width: var(--edge);
+        height: var(--edge);
+        border-radius: 50%;
+    }
+}
+
+.menu-img {
+    --edge: 23px;
+    object-fit: cover;
+}
+
+// Submenu
+.subMenu-item {
+    width: 100%;
+    justify-content: space-between;
+}

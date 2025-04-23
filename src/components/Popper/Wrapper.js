@@ -1,21 +1,36 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Popper.module.scss';
 import ButtonIcon from '~/components/ButtonIcon';
 import { memo } from 'react';
+import clsx from 'clsx';
 
-function Wrapper({ children, title, onCloseHandle }) {
+function Wrapper({ children, title, customClassWrapper, onBack, onCloseHandle }) {
     return (
-        <div className={styles['wrapper']}>
-            <ButtonIcon
-                icon={faXmark}
-                grayColor
-                canHover
-                supperSmall
-                customClassesWrapper={[styles['close-btn']]}
-                onClick={onCloseHandle}
-            />
-            <h2 className={styles['title']}>{title}</h2>
+        <div className={clsx(styles['wrapper'], customClassWrapper)}>
+            {!onBack && (
+                <ButtonIcon
+                    icon={faXmark}
+                    grayColor
+                    canHover
+                    supperSmall
+                    customClassesWrapper={[styles['close-btn']]}
+                    onClick={onCloseHandle}
+                />
+            )}
+
+            <h3 className={styles['title']}>
+                {onBack && (
+                    <ButtonIcon
+                        grayColor
+                        canHover
+                        supperSmall
+                        icon={faAngleLeft}
+                        onClick={onBack}
+                    />
+                )}
+                <span>{title}</span>
+            </h3>
             {children}
         </div>
     );

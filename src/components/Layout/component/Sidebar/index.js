@@ -10,13 +10,12 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import images from '~/assets/images';
 import { menuPrivateConfig } from '~/config/menuConfig.js';
-import MenuItem from '~/components/MenuItem';
-import { Wrapper as WrapperPopper } from '~/components/Popper';
 import TrendItem from '~/components/TrendItem';
 import { trendsData } from '~/config/trendConfig';
+import MenuList from '~/components/MenuList';
+import PopperSidebar from './PopperSidebar';
 
 function Sidebar() {
-    const isCurrentPath = useLocation().pathname;
     const [showPopper, setShowPopper] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
 
@@ -50,36 +49,35 @@ function Sidebar() {
         setSearchResult([...trendsData]);
     }, []);
 
-    console.log('-------Start----------');
+    const renderSearchResult = () => (
+        <>
+            <input className={styles['search-popper-input']} type="text" placeholder="Search" />
+            <div className={styles['search-popper-result']}>
+                <p className={styles['search-popper-suggest']}>You may like</p>
+                <ul className={styles['search-popper-list']}>
+                    {searchResult.map((trend) => (
+                        <TrendItem key={trend.id} trend={trend} />
+                    ))}
+                </ul>
+            </div>
+        </>
+    );
+
     return (
         <header className={clsx(styles['wrapper'], showPopper && styles['collapsed'])}>
             <aside className={styles['sidebar']}>
-                <img className={styles['logo']} src={showPopper ? images.logoIcon : images.logo} alt="Tiktok" />
+                <img
+                    className={styles['logo']}
+                    src={showPopper ? images.logoIcon : images.logo}
+                    alt="Tiktok"
+                />
 
                 {/* Start: Search suggestion */}
-                <Tippy
-                    interactive
+                <PopperSidebar
+                    title="Search"
                     visible={showPopper}
                     onClickOutside={handleHidePopper}
-                    appendTo={'parent'}
-                    placement="right"
-                    render={(attrs) =>
-                        showPopper && (
-                            <WrapperPopper title="Search" onCloseHandle={handleHidePopper}>
-                                <div tabIndex="-1" {...attrs}>
-                                    <input className={styles['search-popper-input']} type="text" placeholder="Search" />
-                                    <div className={styles['search-popper-result']}>
-                                        <p className={styles['search-popper-suggest']}>You may like</p>
-                                        <ul className={styles['search-popper-list']}>
-                                            {searchResult.map((trend) => (
-                                                <TrendItem key={trend.id} trend={trend} />
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </WrapperPopper>
-                        )
-                    }
+                    render={renderSearchResult}
                 >
                     <div className={clsx(styles['search'], showPopper && styles['collapsed'])}>
                         <button className={styles['search-btn']} onClick={togglePopper}>
@@ -87,22 +85,15 @@ function Sidebar() {
                         </button>
                         <input type="text" placeholder="Search" onFocus={handleShowPopper} />
                     </div>
-                </Tippy>
+                </PopperSidebar>
                 {/* End: Search suggestion */}
 
-                {/* List item of menu */}
-                <ul className={styles['menu-list']}>
-                    {menuPrivateConfig
-                        .sort((itemA, itemB) => itemA.orderIndex - itemB.orderIndex)
-                        .map((item) => (
-                            <MenuItem
-                                key={item.orderIndex}
-                                menu={item}
-                                isCurrentPath={isCurrentPath === item.path}
-                                isCollapse={showPopper}
-                            />
-                        ))}
-                </ul>
+                {/* Display menu to screen */}
+                <MenuList
+                    className={styles['menu-list']}
+                    menuList={menuPrivateConfig}
+                    isCollapsed={showPopper}
+                />
             </aside>
         </header>
     );

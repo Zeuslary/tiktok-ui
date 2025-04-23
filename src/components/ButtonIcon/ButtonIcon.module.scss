@@ -36,17 +36,17 @@
 
 // Size button icon
 .supperSmall {
-    --edge: 28px;
+    --edge: 26px;
     font-size: 1.4rem;
 }
 
 .small {
-    --edge: 32px;
+    --edge: 30px;
     font-size: 1.4rem;
 }
 
 .large {
-    --edge: 48px;
+    --edge: 46px;
     font-size: 2.2rem;
 }
 
@@ -74,15 +74,4 @@
     text-align: center;
     color: rgb(80 81 90);
     margin-top: 6px;
-}
-
-// Style for element inside tippy
-.content-tooltip {
-    padding: 10px 10px;
-    min-width: 48px;
-
-    border-radius: 10px;
-    font-size: 1.2rem;
-    color: var(--white-color);
-    background-color: rgba(51, 51, 51, 0.85);
 }
