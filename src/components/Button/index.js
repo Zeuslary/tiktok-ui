@@ -17,8 +17,10 @@ function Button({
     greyColor = false,
     small = false,
     large = false,
+    noGap,
+    canHover,
     children,
-    customClasses,
+    customClasses = [],
     onClick,
     ...passParas
 }) {
@@ -51,6 +53,8 @@ function Button({
             round && styles['round'],
             small && styles['small'],
             large && styles['large'],
+            noGap && styles['noGap'],
+            canHover && styles['canHover'],
         ],
         ...customClasses,
     );

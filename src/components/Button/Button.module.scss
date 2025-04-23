@@ -20,6 +20,10 @@
     + .btn {
         margin-left: 8px;
     }
+
+    &.noGap + &.noGap {
+        margin-left: 0;
+    }
 }
 
 .icon + .title,
@@ -54,6 +58,12 @@
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.12);
+    }
+}
+
+.canHover {
+    &:hover {
+        background-color: var(--flash-white-color);
     }
 }
 
