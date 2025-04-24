@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 :root {
     --primary-color: #fe2c55;
@@ -30,7 +29,7 @@ html {
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'TikTokFont', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
@@ -46,4 +45,38 @@ button {
 a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+// Embed font of TikTok
+@font-face {
+    font-family: 'TikTokFont';
+    font-weight: 400;
+    src: url('/assets/font/TikTokFont-Regular.woff2');
+}
+
+@font-face {
+    font-family: 'TikTokFont';
+    font-weight: 500;
+    src: url('/assets/font/TikTokFont-Semibold.woff2');
+}
+
+@font-face {
+    font-family: 'TikTokFont';
+    font-weight: 700;
+    src: url('/assets/font/TikTokFont-Bold.woff2');
+}
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    font-weight: 700;
+    src: url('/assets/font/TikTokDisplayFont-Bold.woff2');
+}
+
+// Custom tippy style
+body {
+    .tippy-box {
+        background-color: rgba(51, 51, 51, 0.85);
+        padding: 3px;
+        border-radius: 8px;
+    }
 }
