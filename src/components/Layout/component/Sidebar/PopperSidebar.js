@@ -1,14 +1,19 @@
 import Tippy from '@tippyjs/react';
 import { Wrapper as WrapperPopper } from '~/components/Popper';
 
+import styles from './Sidebar.module.scss';
+import clsx from 'clsx';
+
 const defFun = () => {};
 
 function PopperSidebar({
-    render = defFun,
     title,
     visible,
+    sticky = defFun,
+    render = defFun,
     onClickOutside = defFun,
     onBack = defFun,
+    onHide = defFun,
     children,
 }) {
     return (
@@ -18,11 +23,24 @@ function PopperSidebar({
             onClickOutside={onClickOutside}
             appendTo={'parent'}
             placement="right"
+            onHide={onHide}
             render={(attrs) =>
                 visible && (
-                    <WrapperPopper title={title} onCloseHandle={onClickOutside} onBack={onBack}>
+                    <WrapperPopper
+                        title={title}
+                        onCloseHandle={onClickOutside}
+                        onBack={onBack}
+                        sticky={sticky}
+                    >
                         <div tabIndex="-1" {...attrs}>
-                            {render()}
+                            <div
+                                className={clsx(
+                                    styles['popper-wrap'],
+                                    sticky && styles['has-sticky'],
+                                )}
+                            >
+                                {render()}
+                            </div>
                         </div>
                     </WrapperPopper>
                 )

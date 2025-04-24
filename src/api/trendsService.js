@@ -1,4 +1,4 @@
-const trendsApi = [
+const fakeTrendsApi = [
     {
         id: 1,
         title: 'evin do',
@@ -52,4 +52,4 @@ const trendsApi = [
     },
 ];
 
-export default trendsApi;
+export default fakeTrendsApi;

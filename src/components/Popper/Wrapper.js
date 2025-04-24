@@ -5,7 +5,7 @@ import ButtonIcon from '~/components/ButtonIcon';
 import { memo } from 'react';
 import clsx from 'clsx';
 
-function Wrapper({ children, title, customClassWrapper, onBack, onCloseHandle }) {
+function Wrapper({ children, title, customClassWrapper, onBack, onCloseHandle, sticky }) {
     return (
         <div className={clsx(styles['wrapper'], customClassWrapper)}>
             {!onBack && (
@@ -31,6 +31,7 @@ function Wrapper({ children, title, customClassWrapper, onBack, onCloseHandle })
                 )}
                 <span>{title}</span>
             </h3>
+            <div>{sticky && sticky()}</div>
             {children}
         </div>
     );

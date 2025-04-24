@@ -17,8 +17,10 @@
 
 .title {
     font-size: 2rem;
-    margin: 10px 12px;
+    margin: 0 12px;
     display: flex;
+    align-items: center;
+    height: var(--header-popper-height);
 }
 
 button + span {

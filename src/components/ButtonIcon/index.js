@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Tippy from '@tippyjs/react';
 
 import clsx from 'clsx';
 import styles from './ButtonIcon.module.scss';

@@ -4,8 +4,7 @@ import styles from './MenuList.module.scss';
 import MenuItem from './MenuItem';
 import clsx from 'clsx';
 
-function MenuList({ menuList, isCollapsed }) {
-    console.log(menuList);
+function MenuList({ menuList, isCollapsed, onCollapsed, onHideCollapsed }) {
     const isCurrentPath = useLocation().pathname;
 
     return (
@@ -18,7 +17,9 @@ function MenuList({ menuList, isCollapsed }) {
                         key={item.orderIndex}
                         isCurrentPath={isCurrentPath === item.path}
                         isCollapsed={isCollapsed}
-                    ></MenuItem>
+                        onCollapsed={onCollapsed}
+                        onHideCollapsed={onHideCollapsed}
+                    />
                 ))}
         </ul>
     );

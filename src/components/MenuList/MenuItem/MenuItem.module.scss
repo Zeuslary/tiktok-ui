@@ -16,6 +16,17 @@
     }
 }
 
+.menu-search {
+    border-radius: 50%;
+    background-color: var(--flash-white-color);
+    margin-top: 0;
+
+    i svg {
+        position: relative;
+        left: 2px;
+    }
+}
+
 // Style for MenuItem
 .active {
     color: var(--primary-color);
