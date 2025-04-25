@@ -3,16 +3,14 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { useState } from 'react';
 import 'tippy.js/dist/tippy.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react';
+import TippyHeadless from '@tippyjs/react/headless';
 
 import styles from './Home.module.scss';
-import ButtonIcon from '~/components/ButtonIcon';
 import images from '~/assets/images';
-import Button from '~/components/Button';
 import { AppIcon, CoinIcon, DownloadIcon } from '~/components/Icon';
-import Tippy from '@tippyjs/react';
 import MenuItem from '~/components/MenuList/MenuItem';
-import MenuList from '~/components/MenuList';
-import TippyHeadless from '@tippyjs/react/headless';
+import Image from '~/components/Image';
 
 const CONTROLS_ACTION = [
     {
@@ -69,7 +67,7 @@ function Home() {
                     )}
                 >
                     <span className={styles['control-user-btn']}>
-                        <img src={images.zuri} alt="User" />
+                        <Image src={images.zurie} alt="User" />
                     </span>
                 </TippyHeadless>
             </div>
